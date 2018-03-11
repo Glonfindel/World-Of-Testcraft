@@ -37,11 +37,7 @@ public class AccountTest {
     public void deleteAccount() {
         Account account = accountRepository.getById(1);
         accountRepository.delete(account);
-        if (accountRepository.getAll().size() > 0) {
-            assertNotNull(accountRepository.getAll());
-        } else {
-            assertNull(accountRepository.getById(account.getId()));
-        }
+        assertNull(accountRepository.getById(account.getId()));
     }
 
     @Test
@@ -51,14 +47,8 @@ public class AccountTest {
         account.setLogin("Glonfindel");
         account.setPassword("aaa");
         int idToUpdate = 1;
-        accountRepository.update(idToUpdate, account);
-        assertEquals(accountRepository.getById(idToUpdate).getLogin(), account.getLogin());
-
-        for (Account accountFromList : accountRepository.getAll()) {
-            if (accountFromList.getId() == idToUpdate) {
-                assertNotEquals(accountFromList.getLogin(), account.getLogin());
-            }
-        }
+        accountRepository.update(idToUpdate, account.getId());
+        assertEquals(accountRepository.getById(idToUpdate).getLogin(), accountRepository.getById(account.getId()).getLogin());
     }
 
     @Before

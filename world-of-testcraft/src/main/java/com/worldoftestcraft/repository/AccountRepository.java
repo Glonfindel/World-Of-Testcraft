@@ -15,5 +15,5 @@ public interface AccountRepository {
 
 	public void delete(Account account);
 
-	public void update(int accountId, Account account);
+	public void update(int oldAccountId, int newAccountId);
 }
