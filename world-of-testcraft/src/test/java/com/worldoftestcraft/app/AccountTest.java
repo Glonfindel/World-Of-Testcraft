@@ -42,6 +42,7 @@ public class AccountTest {
 
     @Test
     public void updateAccount() {
+        Account accountToTest = accountRepository.getById(2);
         Account account = new Account();
         account.setId(1);
         account.setLogin("Glonfindel");
@@ -49,6 +50,7 @@ public class AccountTest {
         int idToUpdate = 1;
         accountRepository.update(idToUpdate, account.getId());
         assertEquals(accountRepository.getById(idToUpdate).getLogin(), accountRepository.getById(account.getId()).getLogin());
+        assertNotEquals(accountToTest.login, accountRepository.getById(account.getId()).getLogin());
     }
 
     @Before
