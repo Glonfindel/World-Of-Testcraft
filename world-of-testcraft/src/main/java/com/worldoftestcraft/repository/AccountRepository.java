@@ -21,5 +21,5 @@ public interface AccountRepository {
 
 	public int delete(Account account);
 
-	public int update(int oldAccountId, int newAccountId);
+	public int update(int oldAccountId, Account newAccount);
 }

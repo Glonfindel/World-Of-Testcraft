@@ -53,12 +53,11 @@ public class AccountRepositoryImpl implements AccountRepository {
         return count;
     }
     
-
 	@Override
 	public int delete(Account account) {
         int count = 0;     
         try {
-            deleteAccountStmt.setInt(1, account.id);
+            deleteAccountStmt.setInt(1, account.getId());
             count = deleteAccountStmt.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
@@ -75,7 +74,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
             while (rs.next()) {
                 account.setId(rs.getInt("id"));
-                account.setLogin(rs.getString("name"));
+                account.setLogin(rs.getString("login"));
                 account.setPassword(rs.getString("password"));
             }
 
@@ -94,7 +93,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             while (rs.next()) {
                 Account account = new Account();
                 account.setId(rs.getInt("id"));
-                account.setLogin(rs.getString("name"));
+                account.setLogin(rs.getString("login"));
                 account.setPassword(rs.getString("password"));
                 accounts.add(account);
             }
@@ -116,6 +115,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         deleteAccountStmt = connection.prepareStatement("DELETE FROM Account WHERE id = ?");
         getAllAccountsStmt = connection.prepareStatement("SELECT id, login, password FROM Account");
         getAccountByIdStmt = connection.prepareStatement("SELECT id, login, password FROM Account WHERE id = ?");
+        updateAccountStmt = connection.prepareStatement("UPDATE Account SET login = ?, password = ? WHERE id = ?");
     }
 
 	@Override
@@ -127,8 +127,17 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public int update(int oldAccountId, int newAccountId) {
-		return 0;
+	public int update(int oldAccountId, Account newAccount) {
+        int count = 0;
+        try {
+            updateAccountStmt.setString(1, newAccount.getLogin());
+            updateAccountStmt.setString(2, newAccount.getPassword());
+            updateAccountStmt.setInt(3, oldAccountId);
+            count = updateAccountStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        }
+        return count;
 	}
 
 

@@ -12,28 +12,25 @@ import com.worldoftestcraft.repository.AccountRepository;
 import com.worldoftestcraft.repository.AccountRepositoryFactory;
 
 import org.junit.Before;
-import org.junit.Ignore;
 
-@Ignore
 @RunWith(JUnit4.class)
 public class AccountTest {
     AccountRepository accountRepository;
 
     @Test
-    public void getById() throws SQLException{
+    public void getById() throws SQLException {
         int idToFind = 1;
         assertNotNull(accountRepository.getById(idToFind));
     }
 
     @Test
-    public void getAll() throws SQLException{
+    public void getAll() throws SQLException {
         assertNotNull(accountRepository.getAll());
     }
 
     @Test
-    public void addAccount() throws SQLException{
+    public void addAccount() throws SQLException {
         Account account = new Account();
-        account.setId(1);
         account.setLogin("Glonfindel");
         account.setPassword("aaa");
         accountRepository.add(account);
@@ -42,22 +39,23 @@ public class AccountTest {
     }
 
     @Test
-    public void deleteAccount() throws SQLException{
-        Account account = accountRepository.getById(1);
+    public void deleteAccount() throws SQLException {
+        Account account = accountRepository.getById(3);
         accountRepository.delete(account);
         assertNull(accountRepository.getById(account.getId()));
     }
 
     @Test
-    public void updateAccount() throws SQLException{
+    public void updateAccount() throws SQLException {
         Account accountToTest = accountRepository.getById(2);
         Account account = new Account();
         account.setId(1);
         account.setLogin("Glonfindel");
         account.setPassword("aaa");
         int idToUpdate = 1;
-        accountRepository.update(idToUpdate, account.getId());
-        assertEquals(accountRepository.getById(idToUpdate).getLogin(), accountRepository.getById(account.getId()).getLogin());
+        accountRepository.update(idToUpdate, account);
+        assertEquals(accountRepository.getById(idToUpdate).getLogin(),
+                accountRepository.getById(account.getId()).getLogin());
         assertNotEquals(accountToTest.login, accountRepository.getById(account.getId()).getLogin());
     }
 
