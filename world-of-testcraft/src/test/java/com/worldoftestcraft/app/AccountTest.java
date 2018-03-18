@@ -8,8 +8,7 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
-import com.worldoftestcraft.repository.AccountRepository;
-import com.worldoftestcraft.repository.AccountRepositoryFactory;
+import com.worldoftestcraft.repository.*;
 
 import org.junit.Before;
 
@@ -35,14 +34,13 @@ public class AccountTest {
         account.setPassword("aaa");
         accountRepository.add(account);
         assertNotNull(accountRepository.getById(account.getId()));
-
     }
-
+    
     @Test
     public void deleteAccount() throws SQLException {
         Account account = accountRepository.getById(3);
         accountRepository.delete(account);
-        assertNull(accountRepository.getById(account.getId()));
+        assertNull(accountRepository.getById(account.getId()).getLogin());
     }
 
     @Test
