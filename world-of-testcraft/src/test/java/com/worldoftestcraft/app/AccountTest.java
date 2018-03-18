@@ -1,29 +1,37 @@
 package com.worldoftestcraft.app;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 import static org.junit.Assert.*;
+
+import java.sql.SQLException;
 
 import com.worldoftestcraft.repository.AccountRepository;
 import com.worldoftestcraft.repository.AccountRepositoryFactory;
 
 import org.junit.Before;
+import org.junit.Ignore;
 
+@Ignore
+@RunWith(JUnit4.class)
 public class AccountTest {
     AccountRepository accountRepository;
 
     @Test
-    public void getById() {
+    public void getById() throws SQLException{
         int idToFind = 1;
         assertNotNull(accountRepository.getById(idToFind));
     }
 
     @Test
-    public void getAll() {
+    public void getAll() throws SQLException{
         assertNotNull(accountRepository.getAll());
     }
 
     @Test
-    public void addAccount() {
+    public void addAccount() throws SQLException{
         Account account = new Account();
         account.setId(1);
         account.setLogin("Glonfindel");
@@ -34,14 +42,14 @@ public class AccountTest {
     }
 
     @Test
-    public void deleteAccount() {
+    public void deleteAccount() throws SQLException{
         Account account = accountRepository.getById(1);
         accountRepository.delete(account);
         assertNull(accountRepository.getById(account.getId()));
     }
 
     @Test
-    public void updateAccount() {
+    public void updateAccount() throws SQLException{
         Account accountToTest = accountRepository.getById(2);
         Account account = new Account();
         account.setId(1);
