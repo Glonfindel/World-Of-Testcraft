@@ -1,4 +1,5 @@
 language: java
-script:
+before_script:
 - cd world-of-testcraft; bash scripts/server.sh
+script:
 - cd world-of-testcraft; mvn test
