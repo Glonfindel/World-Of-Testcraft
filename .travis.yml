@@ -1,3 +1,4 @@
 language: java
 script:
-- cd world-of-testcraft; bash scripts/server.sh; mvn test
+- cd world-of-testcraft; bash scripts/server.sh
+- cd world-of-testcraft; mvn test
