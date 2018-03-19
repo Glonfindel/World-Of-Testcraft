@@ -13,6 +13,8 @@ public interface AccountRepository {
 
 	public void initDatabase() throws SQLException;
 
+	public void dropRepository();
+
 	public Account getById(int id);
 
 	public List<Account> getAll();

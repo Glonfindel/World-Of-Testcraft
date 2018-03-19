@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import com.worldoftestcraft.repository.*;
 
+import org.junit.After;
 import org.junit.Before;
 
 @RunWith(JUnit4.class)
@@ -56,7 +57,7 @@ public class AccountTest {
                 accountRepository.getById(account.getId()).getLogin());
         assertNotEquals(accountToTest.login, accountRepository.getById(account.getId()).getLogin());
     }
-
+    
     @Before
     public void initRepository() {
         accountRepository = AccountRepositoryFactory.getInstance();
@@ -79,5 +80,10 @@ public class AccountTest {
         accountRepository.add(account1);
         accountRepository.add(account2);
         accountRepository.add(account3);
+    }
+
+    @After
+    public void dropRepository() {
+        accountRepository.dropRepository();
     }
 }
