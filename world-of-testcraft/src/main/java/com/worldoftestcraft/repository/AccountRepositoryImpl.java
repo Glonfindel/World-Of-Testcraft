@@ -25,6 +25,9 @@ public class AccountRepositoryImpl implements AccountRepository {
         setConnection(connection);
     }
 
+    public AccountRepositoryImpl() throws SQLException {
+    }
+
     public boolean isDatabaseReady() {
         try {
             ResultSet rs = connection.getMetaData().getTables(null, null, null, null);
