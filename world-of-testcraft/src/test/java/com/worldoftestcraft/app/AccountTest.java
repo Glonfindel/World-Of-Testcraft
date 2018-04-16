@@ -14,7 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 
-@Ignore
+//@Ignore
 @RunWith(JUnit4.class)
 public class AccountTest {
     AccountRepository accountRepository;
@@ -84,8 +84,8 @@ public class AccountTest {
         accountRepository.add(account3);
     }
 
-    @After
+    /*@After
     public void dropRepository() {
         accountRepository.dropRepository();
-    }
+    }*/
 }

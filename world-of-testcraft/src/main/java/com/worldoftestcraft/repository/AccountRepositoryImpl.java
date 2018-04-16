@@ -2,10 +2,13 @@ package com.worldoftestcraft.repository;
 
 import com.worldoftestcraft.app.Account;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class AccountRepositoryImpl implements AccountRepository {
 
     private Connection connection;
