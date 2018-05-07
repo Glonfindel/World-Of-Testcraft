@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <ACCOUNT LOGIN="Glonfindel" PASSWORD="aaa"/>
+  <ACCOUNT LOGIN="Glonfindel" PASSWORD="bbb"/>
+  <ACCOUNT LOGIN="Glonfindel" PASSWORD="ccc"/>
+    <account LOGIN="Glonfindel" PASSWORD="aaa" />
+    <account LOGIN="Glonfindel" PASSWORD="aaa" />
+</dataset>
